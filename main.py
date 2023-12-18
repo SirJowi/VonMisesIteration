@@ -1,6 +1,8 @@
 """ vonMisesIteration, 12/18/2023 """
 
 import numpy as np
+import matplotlib.pyplot as plt
+
 
 def vonMisesIteration(A, B):
     # check if A and B are symmetric and if they have the same size
@@ -39,6 +41,8 @@ def vonMisesIteration(A, B):
     # STEP K
     epsilon = 10
     n = 0
+    R_history = np.array([R])
+
     while(abs(epsilon) > 1E-10):
         # number of iterations counter
         n = n + 1
@@ -58,6 +62,9 @@ def vonMisesIteration(A, B):
         # Error
         epsilon = (R-R_old)/(R+R_old)
 
+        # Plot Data
+        R_history = np.append(R_history, R)
+
     print("#############################")
     print("-----------------------------")
     print("Problem: (A - λ * B) * x = 0")
@@ -67,11 +74,21 @@ def vonMisesIteration(A, B):
     print(B)
     print("-----------------------------")
     print("Solution:")
-    print("Anzahl Iterationen\t:", n)
-    print("Rayleigh-Quotient\t:", R)
-    print("Vektor\t\t\t\t:", h)
+    print("Number of Iterationen\t:", n)
+    print("Rayleigh-Quotient\t\t:", R)
+    print("Vector h\t\t\t\t:", h)
     print("#############################")
 
+
+    # PLOT
+    y_list = R_history
+    x_list = np.arange(0, n+1, 1)
+    fig, ax = plt.subplots()
+    ax.plot(x_list, y_list)
+    ax.set(xlabel='Iterations', ylabel='Error ε', xticks=(np.arange(0, n+1, 1)))
+    ax.grid()
+    fig.savefig("test.png")
+    plt.show()
 
 # Exercise Problem
 A1 = np.array([[1, 2, 1],
@@ -82,7 +99,7 @@ B1 = np.array([[1, 2, 1],
               [2, 5, 4],
               [1, 4, 6]])
 
-# vonMisesIteration(A1, B1)
+vonMisesIteration(A1, B1)
 
 # Project Task
 A2 = np.array([[1, -2],
@@ -91,4 +108,4 @@ A2 = np.array([[1, -2],
 B2 = np.array([[1, 1],
               [1, 2]])
 
-vonMisesIteration(A2, B2)
+# vonMisesIteration(A2, B2)
