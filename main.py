@@ -76,7 +76,7 @@ def vonMisesIteration(A, B):
     print("Solution:")
     print("Number of Iterationen\t:", n)
     print("Rayleigh-Quotient\t\t:", R)
-    print("Vector h\t\t\t\t:", h)
+    print("Vector v\t\t\t\t:", v)
     print("#############################")
 
 
@@ -99,7 +99,7 @@ B1 = np.array([[1, 2, 1],
               [2, 5, 4],
               [1, 4, 6]])
 
-vonMisesIteration(A1, B1)
+# vonMisesIteration(A1, B1)
 
 # Project Task
 A2 = np.array([[1, -2],
@@ -108,4 +108,4 @@ A2 = np.array([[1, -2],
 B2 = np.array([[1, 1],
               [1, 2]])
 
-# vonMisesIteration(A2, B2)
+vonMisesIteration(A2, B2)
